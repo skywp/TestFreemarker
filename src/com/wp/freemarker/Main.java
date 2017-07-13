@@ -7,7 +7,9 @@ import freemarker.template.Template;
 import java.io.File;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -19,8 +21,14 @@ public class Main {
         configuration.setDirectoryForTemplateLoading(new File("templates"));
 
         //2.创建数据模型
-        Map root = new HashMap<String,String>();
+        Map root = new HashMap<String,Object>();
         root.put("user","skywp");
+        root.put("random",84);
+
+        List list = new ArrayList<Address>();
+        list.add(new Address("中国","北京"));
+        list.add(new Address("中国","上海"));
+        root.put("list1",list);
 
         //3.加载模板文件
         Template t1 = configuration.getTemplate("a.ftl");
